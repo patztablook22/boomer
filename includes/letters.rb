@@ -1,6 +1,6 @@
 module Letters
 
-  @list = [
+  @sinks = [
     
     # vowels
     
@@ -40,7 +40,7 @@ module Letters
 
   ]
 
-  @sum = [
+  @sums = [
     0, # vowels
     0, # consonants
   ]
@@ -49,8 +49,8 @@ module Letters
 
     for i in 0..1
 
-      @list[i].each_value do |val|
-        @sum[i] += val
+      @sinks[i].each_value do |val|
+        @sums[i] += val
       end
 
     end
@@ -59,9 +59,9 @@ module Letters
 
   def self.get(sink)
 
-    r = Random.rand(@sum[sink])
+    r = Random.rand(@sums[sink])
 
-    @list[sink].each do |key, val|
+    @sinks[sink].each do |key, val|
       r -= val
       if r < 0
         return [key, val]
