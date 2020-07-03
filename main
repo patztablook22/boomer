@@ -6,6 +6,8 @@ require_relative 'includes/dice'
 require_relative 'includes/stack'
 require_relative 'includes/prompt'
 
+$wavPlayer = "paplay"
+
 prompt  = Prompt.new
 dice    = Dice.new
 stack   = Stack.new

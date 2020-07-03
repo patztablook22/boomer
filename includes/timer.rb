@@ -11,7 +11,7 @@ class Timer
   def tick
 
     for i in 0..@times
-      `paplay assets/tick.wav`
+      `#{ $wavPlayer } assets/tick.wav`
     end
 
   end

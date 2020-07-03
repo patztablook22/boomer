@@ -9,7 +9,7 @@ class Bomb
 
   def boom
 
-    `paplay assets/boom.wav`
+    `#{ $wavPlayer } assets/boom.wav`
 
   end
 
