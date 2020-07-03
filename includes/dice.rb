@@ -1,13 +1,14 @@
 class Dice
 
-  @options
+  @@options = [ "zacatek", "kdekoli", "vevnitr", "konec" ]
+  @option
 
-  def initialize
-    @options = [ "zacatek", "kdekoli", "vevnitr", "konec" ]
+  def to_s
+    @option
   end
 
-  def roll
-    return @options[ Random.rand(@options.length) ]
+  def initialize
+    @option = @@options[ Random.rand(@@options.length) ]
   end
 
 end

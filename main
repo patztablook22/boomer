@@ -1,53 +1,55 @@
 #! /usr/bin/ruby
 
+require_relative 'includes/prompt'
+require_relative 'includes/letters'
+require_relative 'includes/card'
+require_relative 'includes/dice'
 require_relative 'includes/timer'
 require_relative 'includes/bomb'
-require_relative 'includes/dice'
-require_relative 'includes/stack'
-require_relative 'includes/prompt'
 
 $wavPlayer = "paplay"
 
-prompt  = Prompt.new
-dice    = Dice.new
-stack   = Stack.new
-over   = false
+Letters.init
+Signal.trap("INT") { puts "\nexitting!"; exit 0 }
+
+card = nil
+dice = nil
 
 begin
 
-  prompt.proceed {
-    if over
-      puts "GAME OVER, BOOMER!"
-    else
+  Prompt.proceed {
+    if card.nil?
       puts "HELLO, BOOMER!"
+    else
+      puts "GAME OVER, BOOMER!"
     end
     puts
     puts "START GAME <<<"
   }
 
-  currentCard = nil
-  currentDice = nil
-
-  prompt.proceed(true) {
-    puts " karta: #{currentCard = stack.spawn} <<<"
+  Prompt.proceed(true) {
+    card = Card.new
+    puts " karta: #{card} <<<"
     puts "kostka:"
     puts
   }
 
-  prompt.proceed(true) {
-    puts " karta: #{currentCard}"
-    puts "kostka: #{currentDice = dice.roll} <<<"
+  Prompt.proceed(true) {
+    dice = Dice.new
+    puts " karta: #{card}"
+    puts "kostka: #{dice} <<<"
     puts
   }
 
-  prompt.proceed {
-    puts " karta: #{currentCard}"
-    puts "kostka: #{currentDice}"
+  Prompt.proceed {
+    puts " karta: #{card}"
+    puts "kostka: #{dice}"
     puts "START?! <<<"
   }
 
+  puts
+
   timer = Timer.new(40, 80)
   Bomb.new(timer)
-  over = true
 
 end while true

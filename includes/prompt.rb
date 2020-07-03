@@ -1,6 +1,6 @@
-class Prompt
+module Prompt
 
-  def proceed (emptyForNo = false)
+  def self.proceed (emptyForNo = false)
 
     while true
       puts `clear`
@@ -8,16 +8,26 @@ class Prompt
       yield
       puts 
       puts "moznosti:"
-      puts "[ENTER] -> zkusit znovu"
+      if emptyForNo
+        puts "[ENTER] -> zkusit znovu"
+      end
       puts "    q/Q -> ukoncit hru"
       puts "  jinak -> pokracovat"
+      unless emptyForNo
+        puts
+      end
       puts
       print "vstup> "
       buf = gets
+
+      if buf.nil?
+        buf = ""
+      end
       buf = buf[0..-2]
 
       case buf
       when "q", "Q"
+        puts "exitting..."
         exit 0
       when ""
         if emptyForNo

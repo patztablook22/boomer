@@ -8,7 +8,8 @@ class Bomb
   end
 
   def boom
-
+  
+    print "\nbum... "
     `#{ $wavPlayer } assets/boom.wav`
 
   end
