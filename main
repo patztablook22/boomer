@@ -7,6 +7,7 @@ require_relative 'includes/dice'
 require_relative 'includes/timer'
 require_relative 'includes/bomb'
 
+Dir.chdir(__dir__)
 $wavPlayer = "paplay"
 
 Letters.init
